@@ -5,15 +5,15 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="include\lua_access.h" open="1" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="0" topLine="9" />
 	</File>
 	<File name="src\airplane.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="54" topLine="0" />
 	</File>
-	<File name="src\lua_access.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
+	<File name="src\lua_access.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="827" topLine="24" />
 	</File>
-	<File name="src\main.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="157" topLine="0" />
+	<File name="src\main.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="968" topLine="33" />
 	</File>
 </CodeBlocks_layout_file>

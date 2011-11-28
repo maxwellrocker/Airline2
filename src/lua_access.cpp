@@ -2,6 +2,7 @@
 
 #define BITS_PER_WORD (CHAR_BIT*sizeof(unsigned int))
 #define I_WORD(i) ((unsigned int)(i) / BITS_PER_WORD)
+#define checkarray(L) (airplane*)luaL_checkudata(L, 1, "airplaneMeta")
 
 lua_access::lua_access()
 {
@@ -32,12 +33,15 @@ int lua_access::newairplane(lua_State* L)
     _airplane->setRange(_range);
     _airplane->setName(_name);
 
+    luaL_getmetatable(L, "airplaneMeta");
+    lua_setmetatable(L, -2);
+
     return 1;
 }
 
 int lua_access::getSeat(lua_State* L)
 {
-    airplane* a = (airplane*)lua_touserdata(L, 1);
+    airplane* a = checkarray(L);
     lua_pushinteger(L, a->getSeat());
 
     return 1;
@@ -45,7 +49,7 @@ int lua_access::getSeat(lua_State* L)
 
 int lua_access::getRange(lua_State* L)
 {
-    airplane* a = (airplane*)lua_touserdata(L, 1);
+    airplane* a = checkarray(L);
     lua_pushinteger(L, a->getRange());
 
     return 1;
@@ -53,7 +57,7 @@ int lua_access::getRange(lua_State* L)
 
 int lua_access::getName(lua_State* L)
 {
-    airplane* a = (airplane*)lua_touserdata(L, 1);
+    airplane* a = checkarray(L);
     lua_pushstring(L, a->getName().c_str());
 
     return 1;
@@ -61,7 +65,7 @@ int lua_access::getName(lua_State* L)
 
 int lua_access::setSeat(lua_State* L)
 {
-    airplane* a = (airplane*)lua_touserdata(L, 1);
+    airplane* a = checkarray(L);
     int _seat   = luaL_checkint(L, 2);
 
     a->setSeat(_seat);
@@ -71,7 +75,7 @@ int lua_access::setSeat(lua_State* L)
 
 int lua_access::setRange(lua_State* L)
 {
-    airplane* a = (airplane*)lua_touserdata(L, 1);
+    airplane* a = checkarray(L);
     int _range  = luaL_checkint(L, 2);
 
     a->setRange(_range);
@@ -81,7 +85,7 @@ int lua_access::setRange(lua_State* L)
 
 int lua_access::setName(lua_State* L)
 {
-    airplane* a = (airplane*)lua_touserdata(L, 1);
+    airplane* a = checkarray(L);
     string _name = luaL_checkstring(L, 2);
 
     a->setName(_name);

@@ -18,6 +18,10 @@ int ShowMessage(lua_State* L)
 
 static const struct luaL_Reg airplanelib[] = {
     {"new",     lua_access::newairplane},
+    {NULL, NULL}
+};
+
+static const struct luaL_Reg airplanelib_m[] = {
     {"getseat", lua_access::getSeat},
     {"getrange",lua_access::getRange},
     {"getname", lua_access::getName},
@@ -35,6 +39,12 @@ int main()
 
     lua_register(L, "ShowMessage", ShowMessage);
     luaL_register(L, "airplane", airplanelib);
+
+    luaL_newmetatable(L, "airplaneMeta");
+    lua_pushvalue(L, -1);
+    lua_setfield(L, -2, "__index");
+    luaL_register(L, NULL, airplanelib_m);
+
     luaL_dofile(L, "script.lua");
 
     lua_close(L);
